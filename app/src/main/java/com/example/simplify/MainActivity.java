@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         noteViewModel.getAllNotes().observe(this, new Observer<List<NoteClass>>() {
             @Override
             public void onChanged(List<NoteClass> noteClasses) {
-                noteAdapter.setNotes(noteClasses);
+                noteAdapter.submitList(noteClasses);
             }
         });
     }
