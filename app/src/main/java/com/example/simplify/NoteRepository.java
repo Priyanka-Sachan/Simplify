@@ -29,7 +29,7 @@ public class NoteRepository {
     public void Delete(NoteClass noteClass){
         new DeleteNoteAsyncTask(noteDao).execute(noteClass);
     }
-    public void DeleteAll(){
+    public void DeleteAllNotes(){
         new DeleteAllNotesAsyncTask(noteDao).execute();
     }
     //LiveData process is automatically done on background thread
