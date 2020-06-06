@@ -3,6 +3,7 @@ package com.example.simplify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextClock;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,7 +27,9 @@ class NoteAdapter extends ListAdapter<NoteClass,NoteAdapter.NoteViewHolder> {
         public boolean areContentsTheSame(NoteClass oldItem, NoteClass newItem) {
             return oldItem.getTitle().equals(newItem.getTitle()) &&
                     oldItem.getContent().equals(newItem.getContent()) &&
-                    oldItem.getPriority() == newItem.getPriority();
+                    oldItem.getPriority() == newItem.getPriority()&&
+                    oldItem.getHour()==newItem.getHour()&&
+                    oldItem.getMinute()==newItem.getMinute();
         }
     };
     @NonNull
@@ -42,6 +45,7 @@ class NoteAdapter extends ListAdapter<NoteClass,NoteAdapter.NoteViewHolder> {
         holder.title.setText(currentNote.getTitle());
         holder.content.setText(currentNote.getContent());
         holder.priority.setText(String.valueOf(currentNote.getPriority()));
+        holder.time.setText("At:"+currentNote.getHour()+":"+currentNote.getMinute());
     }
 
     public NoteClass getNoteAt(int position) {
@@ -52,12 +56,14 @@ class NoteAdapter extends ListAdapter<NoteClass,NoteAdapter.NoteViewHolder> {
         TextView priority;
         TextView title;
         TextView content;
+        TextView time;
 
         public NoteViewHolder(View itemView){
             super(itemView);
             priority=itemView.findViewById(R.id.priority);
             title=itemView.findViewById(R.id.title);
             content=itemView.findViewById(R.id.content);
+            time=itemView.findViewById(R.id.time);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

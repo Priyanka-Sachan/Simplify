@@ -10,7 +10,7 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 //More entities can be added in the array
-@Database(entities = {NoteClass.class},version = 1)
+@Database(entities = {NoteClass.class},version = 2)
 public abstract class Simplify_database extends RoomDatabase {
 
     //only one instance of database
@@ -43,9 +43,9 @@ public abstract class Simplify_database extends RoomDatabase {
         }
         @Override
         protected Void doInBackground(Void... voids) {
-            noteDao.insert(new NoteClass("Title 1","Content 1",1));
-            noteDao.insert(new NoteClass("Title 2","Content 2",2));
-            noteDao.insert(new NoteClass("Title 3","Content 3",3));
+            noteDao.insert(new NoteClass("Title 1","Content 1",1,2,3));
+            noteDao.insert(new NoteClass("Title 2","Content 2",2,5,4));
+            noteDao.insert(new NoteClass("Title 3","Content 3",3,7,21));
             return null;
         }
     }

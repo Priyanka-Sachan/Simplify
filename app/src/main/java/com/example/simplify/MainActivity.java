@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra(AddNoteActivity.EXTRA_TITLE, note.getTitle());
                 intent.putExtra(AddNoteActivity.EXTRA_CONTENT, note.getContent());
                 intent.putExtra(AddNoteActivity.EXTRA_PRIORITY, note.getPriority());
+                intent.putExtra(AddNoteActivity.EXTRA_HOUR, note.getHour());
+                intent.putExtra(AddNoteActivity.EXTRA_MINUTE, note.getMinute());
                 startActivityForResult(intent, EDIT_NOTE_REQUEST);
             }
         });
@@ -87,7 +89,9 @@ public class MainActivity extends AppCompatActivity {
             String title = data.getStringExtra(AddNoteActivity.EXTRA_TITLE);
             String content = data.getStringExtra(AddNoteActivity.EXTRA_CONTENT);
             int priority = data.getIntExtra(AddNoteActivity.EXTRA_PRIORITY, 1);
-            NoteClass note = new NoteClass(title, content, priority);
+            int hour=data.getIntExtra(AddNoteActivity.EXTRA_HOUR,0);
+            int minute=data.getIntExtra(AddNoteActivity.EXTRA_MINUTE,0);
+            NoteClass note = new NoteClass(title, content, priority,hour,minute);
             noteViewModel.insert(note);
             Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();
         } else if (requestCode == EDIT_NOTE_REQUEST && resultCode == RESULT_OK) {
@@ -99,7 +103,9 @@ public class MainActivity extends AppCompatActivity {
             String title = data.getStringExtra(AddNoteActivity.EXTRA_TITLE);
             String description = data.getStringExtra(AddNoteActivity.EXTRA_CONTENT);
             int priority = data.getIntExtra(AddNoteActivity.EXTRA_PRIORITY, 1);
-            NoteClass note = new NoteClass(title, description, priority);
+            int hour=data.getIntExtra(AddNoteActivity.EXTRA_HOUR,0);
+            int minute=data.getIntExtra(AddNoteActivity.EXTRA_MINUTE,0);
+            NoteClass note = new NoteClass(title, description, priority,hour,minute);
             note.setId(id);
             noteViewModel.update(note);
             Toast.makeText(this, "Note updated", Toast.LENGTH_SHORT).show();
